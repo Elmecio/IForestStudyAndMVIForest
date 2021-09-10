@@ -1,0 +1,15 @@
+plugins {
+    id "org.shipkit.java" version "2.3.0"
+}
+
+allprojects {
+    apply plugin: "eclipse"
+    apply plugin: "idea"
+
+    group = "com.linkedin.isolation-forest"
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}

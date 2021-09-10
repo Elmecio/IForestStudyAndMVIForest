@@ -1,0 +1,13 @@
+.ipynb_checkpoints*
+figures/images/
+figures/other_files/
+figures/Makefile
+figures/joss-logo.png
+figures/latex.template
+*.pyc
+build/
+dist/
+eif.egg-info/
+_eif.cpp
+*.so
+cleanup.sh

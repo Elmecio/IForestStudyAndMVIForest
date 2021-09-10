@@ -1,0 +1,12 @@
+Jeu de données à 3 dimensions constitué de 1500 données normales et de 15 données anormales. 
+ Les données anormales se retrouvent au centre d'une grande sphère formée par les données normales. 
+ Les données normales sont à une distance maximale de 2 les unes des autres. 
+ Les données anormales se trouve à une distance minimale de 3 des données normales. 
+ Données normales : 
+ - Données aléatoires uniform 
+ - taille = 1500,  
+ - distance euclidienne entre 8 et 10 (Grande sphère de rayon 10 et petite sphère de rayon 8) 
+ Données anormales : 
+ - Données aléatoires uniform 
+ - taille = 15,  
+ - distance euclidienne entre 0.0 et 5 (Grande sphère de rayon 5 et petite sphère de rayon 0.0)

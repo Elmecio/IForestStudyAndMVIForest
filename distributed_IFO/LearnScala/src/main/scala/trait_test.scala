@@ -1,0 +1,3 @@
+trait trait_test {
+
+}
