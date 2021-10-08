@@ -596,7 +596,7 @@ class utilitaries:
             XBrut = dataset[0]
         elif dataset_number_dimension-2 > 0:
             columns =[]
-            for i in range(0, dataset_number_dimension-5,1):
+            for i in range(0, dataset_number_dimension-4,1):
                 columns.append(i)
             #print(columns)
             XBrut = dataset[dataset.columns[columns]]
