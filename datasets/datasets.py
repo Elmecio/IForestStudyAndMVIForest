@@ -522,10 +522,12 @@ class utilitaries:
     Pour concatener plusieurs jeux de données. 
     Classes explicatives, scores, chemin, prediction, classe à expliquer
     dataX et dataY sont obligatoires
+    splitOn can be "PredictClass" or "RealClass"
     """
     def concat_columns_split(self, dataX=None, dataScores=None, dataY=None, 
                              outlier_label=ue._OUTLIER_LABEL, 
-                             dataYPrediction=None, dataPathLength=None):
+                             dataYPrediction=None, dataPathLength=None,
+                             splitOn="RealClass"):
         
         if dataX is not None:
             pdataX = pd.DataFrame(dataX)
@@ -540,17 +542,28 @@ class utilitaries:
         if dataPathLength is not None:
             pdataPathLength = pd.DataFrame(dataPathLength)
             pdataX = pd.concat([pdataX, pdataPathLength], axis=1, ignore_index=True, sort=False)
+        if  splitOn != "PredictClass":   
+            if dataYPrediction is not None:
+                pdataYPrediction = pd.DataFrame(dataYPrediction)
+                pdataX = pd.concat([pdataX, pdataYPrediction], axis=1, ignore_index=True, sort=False)
+                
+            if dataY is not None:
+                pdataY = pd.DataFrame(dataY)
+                pdataX = pd.concat([pdataX, pdataY], axis=1, ignore_index=True, sort=False)
+            else:
+                print("dataY must be different to None.")
+                return None, None, None
+        else: 
+            if dataY is not None:
+                pdataY = pd.DataFrame(dataY)
+                pdataX = pd.concat([pdataX, pdataY], axis=1, ignore_index=True, sort=False)
             
-        if dataYPrediction is not None:
-            pdataYPrediction = pd.DataFrame(dataYPrediction)
-            pdataX = pd.concat([pdataX, pdataYPrediction], axis=1, ignore_index=True, sort=False)
-            
-        if dataY is not None:
-            pdataY = pd.DataFrame(dataY)
-            pdataX = pd.concat([pdataX, pdataY], axis=1, ignore_index=True, sort=False)
-        else:
-            print("dataY must be different to None.")
-            return None, None, None
+            if dataYPrediction is not None:
+                pdataYPrediction = pd.DataFrame(dataYPrediction)
+                pdataX = pd.concat([pdataX, pdataYPrediction], axis=1, ignore_index=True, sort=False)
+            else:
+                print("dataYPrediction must be different to None.")
+                return None, None, None
         #print("Result")
         #print(result)
         #print("Outlier Label")
@@ -568,4 +581,32 @@ class utilitaries:
         pScores = pd.DataFrame(dataScores)
         result = pd.concat([pdataX, pScores], axis=1, ignore_index=True, sort=False)
         return result
+    
+    """
+        Pour scinder un jeu de données contenant les résultats d'une exécution
+        Input : dataset (m dimensions)
+        Outputs : XBrut(position = <=m-5), YBrut(position = m-4), 
+                YClassified(position = m-3), Scores(position = m-2), 
+                PathLengths (position = m-1)
+    """
+    def split_in_results(self, dataset):
+        dataset_number_dimension = len(dataset.columns)
+        #print("Columns number = "+str(dataset_number_dimension))
+        if dataset_number_dimension-2 == 0:
+            XBrut = dataset[0]
+        elif dataset_number_dimension-2 > 0:
+            columns =[]
+            for i in range(0, dataset_number_dimension-5,1):
+                columns.append(i)
+            #print(columns)
+            XBrut = dataset[dataset.columns[columns]]
+            YBrut = dataset[dataset_number_dimension-4]
+            YClassified = dataset[dataset_number_dimension-3]
+            Scores = dataset[dataset_number_dimension-2]
+            PathLengths = dataset[dataset_number_dimension-1]
+        else:
+            print("There is an error in the dataset you uploaded. It have to have at least 2 columns.")
+            return
+        
+        return pd.DataFrame(XBrut), pd.DataFrame(YBrut), pd.DataFrame(YClassified), pd.DataFrame(Scores), pd.DataFrame(PathLengths)
     

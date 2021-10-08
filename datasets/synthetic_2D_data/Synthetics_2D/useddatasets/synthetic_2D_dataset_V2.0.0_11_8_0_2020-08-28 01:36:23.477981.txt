@@ -1,0 +1,16 @@
+Jeu de données à 2 dimensions constitué de 1500 données normales et de 15 données anormales. 
+ Les données anormales se retrouvent au centre d'un grand cercle formé par les données normales. 
+ Les données normales sont à une distance maximale de 2 les unes des autres. 
+ Les données anormales se trouve à une distance minimale de 3 des données normales. 
+ Données normales : 
+ - Données aléatoires uniform 
+ - x entre -10 et 10,  
+ - y entre -10 et 10,  
+ - taille = 1500,  
+ - distance euclidienne entre 5 et 7 (Grand cercle de rayon 7 et petit cercle de rayon 5) 
+ Données anormales : 
+ - Données aléatoires uniform 
+ - x entre -10 et 10,  
+ - y entre -10 et 10,  
+ - taille = 15,  
+ - distance euclidienne entre 0.0 et 2 (Grand cercle de rayon 2 et petit cercle de rayon 0.0)

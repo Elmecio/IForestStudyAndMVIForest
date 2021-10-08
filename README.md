@@ -1,5 +1,27 @@
-Ce projet pour tester les différentes méthodes existantes de détection d'anomalies dans les datasets
+This project is to depth study IForest method and to proposed a new version named MVIForest
 
+# New Contents
+## Datasets
+### Synthetics datasets links 
+    - image generator : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/images_generator.ipynb
+    - Datasets generator : http://localhost:8888/edit/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/datasets_generator.py
+    - 2D dataset generation : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_2D_data/2D_dimension_datasets_generation.ipynb
+    - 2D dataset data, old and new images, description : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_2D_data/Synthetics_2D
+    - 3D dataset generation : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_3D_data
+    
+### Public datasets
+http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/datasets_publics
+
+## Execution
+### Comparison IForest, EIF, MVIForest
+    - On 2D synthetics datasets : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Comparison_IForest_EIF_MVIForest_2D_SyntheticsData_V30102020_ToChangeNumberOfScores.ipynb
+    - All the files (execution, result and images) : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020
+    
+    - Regeneration of image with same axis scale : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-10-30_Copie_Important/images_generator.ipynb
+
+*******************************************************************************************************************************
+
+# Old Contents (To delete)
 # Table of contents
 - [Pré-réquis](#Pré-réquis)
 - [Summary](#Summary)
