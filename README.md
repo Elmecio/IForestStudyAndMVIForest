@@ -1,6 +1,28 @@
 This project is to depth study IForest method and to proposed a new version named MVIForest
 
 # New Contents
+# Prerequisites
+## Tools
+    - Anaconda 1.9.7
+    - Jupiter Notebook
+    - Spyder
+    - Installer git (sudo pip install git)
+    - Installer numpy (sudo pip install numpy)
+    - Installer pandas (sudo pip install pandas)
+    - Installer sklearn (sudo pip install sklearn)
+    - Installer imblearn (sudo pip install imblearn) (pip install -U imbalanced-learn) (https://imbalanced-learn.org/stable/metrics.html)
+    - Installer eif (sudo pip install eif)(pip install git+https://github.com/sahandha/eif.git)
+    - Installer scipy (sudo pip install scipy)
+    - Installer matplotlib (sudo pip install matplolib)
+    - Install pip install ipywidgets  jupyter nbextension enable --py widgetsnbextension
+## Possible errors
+    Generally restart the kernel after every installation
+    - ModuleNotFoundError: No module named 'imblearn'
+    Solution : Install imblearn
+    - cannot import name 'delayed' from 'sklearn.utils.fixes' (/Users/togbe/opt/anaconda3/lib/python3.8/site-packages/sklearn/utils/fixes.py)
+    Solution : Just restart the kernel
+    - ModuleNotFoundError: No module named 'eif'
+    Solution : Install EIF
 ## Datasets
 ### Synthetics datasets links 
     - image generator : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/images_generator.ipynb
@@ -8,6 +30,13 @@ This project is to depth study IForest method and to proposed a new version name
     - 2D dataset generation : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_2D_data/2D_dimension_datasets_generation.ipynb
     - 2D dataset data, old and new images, description : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_2D_data/Synthetics_2D
     - 3D dataset generation : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_3D_data
+    - Synthetics datasets used in the paper :
+    - 2.0.0 ==> Synthetic 5 (TwoD2_V2_0_0())
+        * 3.3.0 ==> Synthetic 1 (TwoD2_V3_3_0())
+        * 3.4.0 ==> Synthetic 2 (TwoD2_V3_4_0())
+        * 4.3.0 ==> Synthetic 6 (TwoD2_V4_3_0())
+        * 4.3.1 ==> Synthetic 3 (TwoD2_V4_3_1())
+        * 4.3.2 ==> Synthetic 4 (TwoD2_V4_3_2())
     
 ### Public datasets
 http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/datasets_publics

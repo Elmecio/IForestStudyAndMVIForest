@@ -8,7 +8,7 @@ Created on Thu Feb 20 10:32:12 2020
 
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_auc_score
-from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import precision_score, recall_score, average_precision_score
 from imblearn.metrics import specificity_score
 from sklearn.metrics import f1_score
 from time import time
@@ -39,7 +39,7 @@ class performances:
 #   Parameters are : Y_predict =  prediction and Y_original = original classes 
 # =============================================================================
     def performance_summary(self, Y_predict, Y_original, scores, CPUTime = None,
-                            UseMemory=None, print_result=True):
+                            UseMemory=None, print_result=True, outputPRAUC = False):
         #if len(scores) != len(Y_predict) or len(Y_predict) != len(Y_original) or len(scores) != len(Y_original):
         #    print("There is an error about datasets and scores length. They have to be the same.")
         #    return
@@ -67,6 +67,8 @@ class performances:
         f1 = f1_score(Y_original, Y_predict)
         #far = (1 - rec)*100
         far = (tfn * 100) /(tfn + ttn)
+        #https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4349800/
+        prauc = average_precision_score(Y_original, Y_predict)
         
         if print_result == True:
             print("Confusion matrice")
@@ -83,17 +85,20 @@ class performances:
             #print("f1_score")
             print("f1_score : "+str(f1))
             #print("****************************************************************")
-            #print("False alarm rate (%)")
+            #print("PR AUC")
+            print("PR AUC : "+str(prauc))
                 
             print("False alarm rate (%) : "+str(far))
             #print("CPU Time(s)")
             print("CPU Time (s) : "+str(CPUTime))
             #print("****************************************************************")
             #print("Memory Consumption (o)")
-            print("Memory Consumption (o) : "+str(UseMemory))
+            print("Memory Consumption (Mo) : "+str(UseMemory))
             print("****************************************************************")
-    
-        return ttn, tfp, tfn, ttp, cm, auc, spec, prec, rec, f1, far 
+        if outputPRAUC is True :
+            return ttn, tfp, tfn, ttp, cm, auc, spec, prec, rec, f1, far, prauc
+        else :
+            return ttn, tfp, tfn, ttp, cm, auc, spec, prec, rec, f1, far 
         
     def resume_table(self, tab:[], table_name=""):
         print(table_name)
@@ -122,17 +127,17 @@ class performances:
     """
     def resume_table_figure(self, title="Results of IForest execution", 
                             aucs = None, specs = None, recalls = None, 
-                            fars = None, f1s = None, exec_times = None, 
+                            fars = None, praucs = None, f1s = None, exec_times = None, 
                             exec_memories = None, cms=None, 
                             tns = None, fps = None, tps = None, fns = None,
                             dataset_name="Dataset", 
-                            method_name="Method", save_fig=False):
+                            method_name="Method", save_fig=False, exec_number=0):
         
         from metrics import visualization
         visu = visualization.visualization()
         from metrics import useful_infos as ue
         
-        exec_memories = None
+        #exec_memories = None
         print(title)
         import matplotlib.pyplot as plt
         #from platform import python_version as pythonversion
@@ -152,6 +157,15 @@ class performances:
             aucs.append(mini)
             aucs.append(maxi)
             table_vals.append(aucs)
+        if praucs != None:
+            row_labels.append("PR AUC")
+            exection_number = len(praucs)
+            variance, mean, mini, maxi = self.statistics(praucs)
+            praucs.append(variance)
+            praucs.append(mean)
+            praucs.append(mini)
+            praucs.append(maxi)
+            table_vals.append(praucs)
         if specs != None:
             row_labels.append("Specificity")
             exection_number = len(specs)
@@ -198,7 +212,7 @@ class performances:
             exec_times.append(maxi)
             table_vals.append(exec_times)
         if exec_memories != None:
-            row_labels.append("Memory (o)")
+            row_labels.append("Memory (Mo)")
             exection_number = len(exec_memories)
             variance, mean, mini, maxi = self.statistics(exec_memories)
             exec_memories.append(variance)
@@ -259,7 +273,7 @@ class performances:
         col_labels.append("Max")
         
         fig, axs =plt.subplots(1,1, figsize=(5, 7))
-        fig.suptitle(title, fontsize=26)
+        #fig.suptitle(title, fontsize=26)
         
         # Draw table
         the_table = axs.table(cellText=table_vals,
@@ -270,6 +284,7 @@ class performances:
         the_table.auto_set_font_size(False)
         the_table.set_fontsize(24)
         the_table.scale(5, 4)
+        axs.set_title(title, fontsize=26, y=1.0, pad=160)
         
         # Removing ticks and spines enables you to get the figure only with table
         plt.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
@@ -280,7 +295,7 @@ class performances:
             
         if save_fig == True:
             visu.save_image(dataset_name=dataset_name, method_name=method_name, 
-                            type_result=ue._ANALYSIS_FIGURE_TYPE_METRICS,  fig=fig)
+                            type_result=ue._ANALYSIS_FIGURE_TYPE_METRICS,  fig=fig, exec_number = exec_number)
             
             self.save_execution_data(other_metric = None, other_metric_name = None,
                                     execution_number = None, sample_sizes = None, 
@@ -288,7 +303,8 @@ class performances:
                                     specificities = specs, fars = fars, exec_times = exec_times, 
                                     exec_memories = exec_memories, precisions = None, f1_scores = f1s, 
                                     tns = tns, fps = fps, tps = tps, fns = fns, cms=cms,
-                                    data_name = dataset_name, method_name=method_name)
+                                    data_name = dataset_name, method_name=method_name, 
+                                    pr_aucs = praucs, exec_number = exec_number)
         #fig.show()
         
         #return fig
@@ -307,8 +323,9 @@ class performances:
                             exec_memories = None, precisions = None, f1_scores = None, 
                             tns = None, fps = None, tps = None, fns = None, cms=None,
                             data_name = "Data", method_name="Method", 
-                            execution_object="Experiment"
+                            execution_object="Experiment", pr_aucs = None
                   #folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH
+                  , exec_number = 0
                   ):
        
         from metrics import utilities_functions
@@ -332,6 +349,9 @@ class performances:
         if roc_aucs != None:
             names.append("ROC AUC")
             data.append(roc_aucs)
+        if pr_aucs != None:
+            names.append("PR AUC")
+            data.append(pr_aucs)
         if recalls != None:
             names.append("Recall")
             data.append(recalls)
@@ -378,7 +398,8 @@ class performances:
         
         data_file_name = u_functions.save_results_data(data=data, names=names, 
                                                        data_name=data_name, method_name=method_name,
-                                               execution_object=execution_object, type_result = "MetricsResults")
+                                               execution_object=execution_object, 
+                                               type_result = "MetricsResults", exec_number = exec_number)
         return data_file_name
     
         
@@ -392,7 +413,7 @@ class performances:
                             data_name = "Data", method_name="Method", 
                             execution_object="Experiment", 
                             alldataset = None, 
-                            XBrut = None, YBrut = None):
+                            XBrut = None, YBrut = None, exec_number = 0):
         import pandas as pd 
         from metrics import utilities_functions
         u_functions = utilities_functions.functions()
@@ -422,5 +443,6 @@ class performances:
         
         data_file_name = u_functions.save_results_data(alldataset = dataset, 
                                                        data_name=data_name, method_name=method_name,
-                                               execution_object=execution_object, type_result = "DataResults")
+                                               execution_object=execution_object, type_result = "DataResults"
+                                               , exec_number = exec_number)
         return data_file_name

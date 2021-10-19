@@ -52,7 +52,7 @@ class functions:
     '''
     def save_image(self, dataset_name, method_name, type_result, fig, 
                    folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH, 
-                   execution_object="Experiment"):
+                   execution_object="Experiment", exec_number = 0):
         
 #        #directory_path = dataset_name.split("+")[0]+folder_path+"/"+method_name+"/"+dataset_name.split("+")[1]
 #        
@@ -67,7 +67,7 @@ class functions:
                          folder_path=folder_path)
         
         #file_path = directory_path+"/"+dataset_name+"_"+method_name+"_"+type_result+"_"+str(datetime.now())+".png"
-        file_path = directory_path+"/"+dataset_name+"_"+method_name+"_"+type_result+".png"
+        file_path = directory_path+"/"+"Exec_"+str(exec_number)+"_"+dataset_name+"_"+method_name+"_"+type_result+".png"
         fig.savefig(file_path, bbox_inches='tight', pad_inches=0.05)
         print("Image well saved in = "+file_path)
         
@@ -86,7 +86,7 @@ class functions:
                           execution_object, data:[] = None, names:[] = None, 
                           alldataset: pd.DataFrame = None, 
                           folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH,
-                          type_result = None):
+                          type_result = None, exec_number = 0):
         
         #if alldataset != None:
         dataset = alldataset
@@ -124,9 +124,9 @@ class functions:
             print("directory_path = "+directory_path)
             #file_path = directory_path+"/"+dataset_name+"_"+method_name+"_"+type_result+"_"+str(datetime.now())+".png"
             if type_result != None:
-                file_name = directory_path+"/"+execution_object+"_"+method_name+"_"+data_name+"_"+type_result+"_"+str(datetime.now()).replace(" ", "-").replace(".", "-").replace(":", "-")+".csv"
+                file_name = directory_path+"/"+"Exec_"+str(exec_number)+"_"+execution_object+"_"+method_name+"_"+data_name+"_"+type_result+"_"+str(datetime.now()).replace(" ", "-").replace(".", "-").replace(":", "-")+".csv"
             else:
-                file_name = directory_path+"/"+execution_object+"_"+method_name+"_"+data_name+"_"+str(datetime.now()).replace(" ", "-").replace(".", "-").replace(":", "-")+".csv"
+                file_name = directory_path+"/"+"Exec_"+str(exec_number)+"_"+execution_object+"_"+method_name+"_"+data_name+"_"+str(datetime.now()).replace(" ", "-").replace(".", "-").replace(":", "-")+".csv"
             # Save dataset
             dataset.to_csv(file_name, index=None, header=True)
             print("Data well saved in = "+file_name)
@@ -138,7 +138,7 @@ class functions:
         This is to plot the data using the given file.
     '''
     def plot_with_data(self, file_name, x_name, x_column:int, y_name, y_column:int, z_name, z_column:int, 
-                       title, version, n_dimensions = 2, save_fig=False):
+                       title, version, n_dimensions = 2, save_fig=False, exec_number = 0):
         
         
         #data = datat.load_data_without_split(file_name)
@@ -155,7 +155,7 @@ class functions:
                              dataset_name=names[2], method_name=names[1], 
                              execution_object=names[0],
                              folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH,
-                             save_fig=save_fig)
+                             save_fig=save_fig, exec_number = exec_number)
 
     '''
         This function is to plot execution metrics results
@@ -163,7 +163,7 @@ class functions:
     def metric_visualization(self, title, x_data, x_title, y_data, y_title, 
                              dataset_name, method_name, execution_object="Experiment",
                              folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH,
-                             save_fig=False):
+                             save_fig=False, exec_number = 0):
        
         import matplotlib.pyplot as plt
         from metrics import description
@@ -184,14 +184,14 @@ class functions:
             self.save_image(dataset_name=dataset_name, method_name=method_name,
                                    execution_object=execution_object,
                                    type_result=ue._ANALYSIS_FIGURE_TYPE_METRICS,
-                                   fig=fig)
+                                   fig=fig, exec_number = exec_number)
         
         return fig, axs
 
         
     def save_data(self, title,  dataset_name, method_name, 
                   execution_object="Experiment", data_name = "data",
-                  folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH):
+                  folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH, exec_number = 0):
        
         '''
             Ajouter les données dans un tableau
@@ -229,5 +229,5 @@ class functions:
         print(data)
         
         data_file_name = u_functions.save_results_data(data=data, names=names, data_name=data_name, method_name=method_name,
-                                               execution_object=execution_object)
+                                               execution_object=execution_object, exec_number = exec_number)
         return fig, axs

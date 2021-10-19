@@ -58,7 +58,7 @@ class visualization:
                               outlier_label=ue._OUTLIER_LABEL, pathLength=[], 
                               model = None, threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False,y_predicted=None):
+                              save_fig=False,y_predicted=None, exec_number = 0):
         
         '''
             Sauvegarder les résultats dans un fichier fichier
@@ -68,7 +68,7 @@ class visualization:
                         execution_object="Experiment", 
                         alldataset = None, 
                         XBrut = X_brut, YBrut = y_brut, YClassified = y_predicted,
-                        scores = scores, pathLengths = pathLength)
+                        scores = scores, pathLengths = pathLength, exec_number = exec_number)
         
         if len(pathLength)==0:
             return self.description_V1(title=title, scores=scores, X_brut=X_brut, 
@@ -76,7 +76,7 @@ class visualization:
                                        x_lim=x_lim, y_lim=y_lim, 
                                        outlier_label=outlier_label, threshold=threshold, 
                               dataset_name=dataset_name, method_name=method_name, 
-                              save_fig=save_fig)
+                              save_fig=save_fig, exec_number = exec_number)
         elif model is None:
             return self.description_V2(title=title, scores=scores, X_brut=X_brut, 
                                   y_brut=y_brut,X_normal=X_normal, X_abnormal=X_abnormal, 
@@ -84,7 +84,7 @@ class visualization:
                                   outlier_label=outlier_label,pathLength=pathLength
                                   , threshold=threshold, 
                               dataset_name=dataset_name, method_name=method_name, 
-                              save_fig=save_fig)
+                              save_fig=save_fig, exec_number = exec_number)
         else:
             return self.description_V3(title=title, scores=scores, X_brut=X_brut, 
                                   y_brut=y_brut,X_normal=X_normal, X_abnormal=X_abnormal, 
@@ -92,14 +92,14 @@ class visualization:
                                   outlier_label=outlier_label,pathLength=pathLength, 
                                   model = model, threshold=threshold, 
                                   dataset_name=dataset_name, 
-                                  method_name=method_name, save_fig=save_fig)
+                                  method_name=method_name, save_fig=save_fig, exec_number = exec_number)
     
     def result_description_3D(self, title, scores, X_brut, y_brut,X_normal, 
                               X_abnormal, x_lim, y_lim, z_lim,  
                               outlier_label=ue._OUTLIER_LABEL, pathLength=[], 
                               model = None, threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False,y_predicted=None):
+                              save_fig=False,y_predicted=None, exec_number = 0):
         '''
             Sauvegarder les résultats dans un fichier fichier
         '''
@@ -108,7 +108,7 @@ class visualization:
                         execution_object="Experiment", 
                         alldataset = None, 
                         XBrut = X_brut, YBrut = y_brut, YClassified = y_predicted,
-                        scores = scores, pathLengths = pathLength)
+                        scores = scores, pathLengths = pathLength, exec_number = exec_number)
         
         return self.description_3D_V3(title=title, scores=scores, X_brut=X_brut, 
                                   y_brut=y_brut,X_normal=X_normal, X_abnormal=X_abnormal, 
@@ -116,7 +116,7 @@ class visualization:
                                   outlier_label=outlier_label,pathLength=pathLength, 
                                   model = model, threshold=threshold, 
                                   dataset_name=dataset_name, 
-                                  method_name=method_name, save_fig=save_fig)
+                                  method_name=method_name, save_fig=save_fig, exec_number = exec_number)
     
     def result_description_More3D(self, title, scores, X_brut, y_brut, 
                             y_predicted,X_normal, 
@@ -124,7 +124,7 @@ class visualization:
                               outlier_label=ue._OUTLIER_LABEL, pathLength=[], 
                               model = None, threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False, n_dimensions=2):
+                              save_fig=False, n_dimensions=2, exec_number = 0):
         '''
             Sauvegarder les résultats dans un fichier fichier
         '''
@@ -142,12 +142,12 @@ class visualization:
                                   model = model, threshold=threshold, 
                             y_predicted=y_predicted, 
                                   dataset_name=dataset_name, 
-                                  method_name=method_name, save_fig=save_fig, n_dimensions=n_dimensions)
+                                  method_name=method_name, save_fig=save_fig, n_dimensions=n_dimensions, exec_number = exec_number)
     
     def description_V1(self, title, scores, X_brut, y_brut,X_normal, X_abnormal, x_lim, y_lim, 
                               outlier_label, threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False):
+                              save_fig=False, exec_number = 0):
         if len(scores) != len(X_brut) or len(X_brut) != len(y_brut) or len(scores) != len(y_brut):
             print("There is an error about datasets and scores length. They have to be the same.")
         else:
@@ -233,7 +233,7 @@ class visualization:
                                                               title="Anomaly Score distribution")
             if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name,
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS, fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS, fig=fig, exec_number = exec_number)
             
             return fig, axs, normal, abnormal, all_dataset_with_scores
     
@@ -241,7 +241,7 @@ class visualization:
     def description_V2(self, title, scores, X_brut, y_brut,X_normal, X_abnormal, x_lim, y_lim, 
                               outlier_label, pathLength, threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False):
+                              save_fig=False, exec_number = 0):
         if len(scores) != len(X_brut) or len(X_brut) != len(y_brut) or len(scores) != len(y_brut):
             print("There is an error about datasets and scores length. They have to be the same.")
         else:
@@ -349,7 +349,7 @@ class visualization:
                                                               title="Abnormal path length distribution")
             if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name,
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS, fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS, fig=fig, exec_number = exec_number)
 
             
             return fig, axs, normal, abnormal, all_dataset_with_scores
@@ -359,7 +359,7 @@ class visualization:
     def description_V3(self, title, scores, X_brut, y_brut,X_normal, X_abnormal, x_lim, y_lim, 
                               outlier_label, pathLength, model, threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False):
+                              save_fig=False, exec_number = 0):
         if len(scores) != len(X_brut) or len(X_brut) != len(y_brut) or len(scores) != len(y_brut):
             print("There is an error about datasets and scores length. They have to be the same.")
         else:
@@ -450,7 +450,7 @@ class visualization:
             
             if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name,
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS,  fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS,  fig=fig, exec_number = exec_number)
             
             return fig, axs, None, None, None
 
@@ -464,7 +464,7 @@ class visualization:
                                outlier_label, pathLength, model, z_lim=7, 
                                threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False):
+                              save_fig=False, exec_number = 0):
         # This import registers the 3D projection, but is otherwise unused.
         from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
         #from mpl_toolkits import mplot3d
@@ -558,7 +558,7 @@ class visualization:
             
             if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name,
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS,  fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_RESULTS,  fig=fig, exec_number = exec_number)
             
             return fig, axs, None, None, None
 
@@ -570,7 +570,7 @@ class visualization:
                               outlier_label, pathLength, model, 
                               threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False, n_dimensions=2):
+                              save_fig=False, n_dimensions=2, exec_number = 0):
         if len(scores) != len(X_brut) or len(X_brut) != len(y_brut) or len(scores) != len(y_brut):
             print("There is an error about datasets and scores length. They have to be the same.")
         else:
@@ -693,7 +693,7 @@ class visualization:
             
             if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name,
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_DISTRIBUTION,  fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_DISTRIBUTION,  fig=fig, exec_number = exec_number)
             
             
             return fig, axs, None, None, None
@@ -701,7 +701,7 @@ class visualization:
     def metrics_visualization(self, title, axe_x, x_title, specifities, recalls, aucs, 
                               fars, f1s, cputimes, memories, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False):
+                              save_fig=False, exec_number = 0):
         #if len(threshold) != len(specifities) or len(specifities) != len(recalls) or len(threshold) != len(recalls):
         #    print("There is an error about datasets and scores length. They have to be the same.")
         #else:
@@ -741,14 +741,14 @@ class visualization:
                                      title = x_title+" - Memory")
             if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name, 
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_METRICS,  fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_METRICS,  fig=fig, exec_number = exec_number)
             
             return fig, axs
     
     def describe_samples_2D(self, title, X_brut, X_train, x_lim, y_lim,  
                               model, X_anomaly, z_lim=None, n_dimensions=2, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False):
+                              save_fig=False, exec_number = 0):
         #from IForest_DODiMDS .iforest_D import IsolationForest
         if n_dimensions == 2:
             fig, axs = self.samples_description_2D(title=title, X_brut=X_brut, 
@@ -756,7 +756,7 @@ class visualization:
                                   x_lim=x_lim, y_lim=y_lim, z_lim = z_lim,
                                   model = model, X_anomaly=X_anomaly, 
                               dataset_name=dataset_name, method_name=method_name, 
-                              save_fig=save_fig)
+                              save_fig=save_fig, exec_number = exec_number)
             #if save_fig == True:
             #    u_functions.save_image(dataset_name=dataset_name, method_name=method_name,
             #                    type_result=ue._ANALYSIS_FIGURE_TYPE_SAMPLE_DESCRIPTION,  fig=fig)
@@ -765,7 +765,7 @@ class visualization:
     def samples_description_2D(self, title, X_brut, X_train, x_lim, y_lim, z_lim,  
                               model, X_anomaly, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False):
+                              save_fig=False, exec_number = 0):
            size = len(model.samples)
            #util.print_all_dataset(model.samples, "Model.samples")
            #util.print_all_dataset(X_anomaly, "X_anomaly")
@@ -825,7 +825,7 @@ class visualization:
                                      xmin=-x_lim, xmax=x_lim, ymin=-y_lim, ymax=y_lim)
            if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name, 
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_SAMPLE_DESCRIPTION,  fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_SAMPLE_DESCRIPTION,  fig=fig, exec_number = exec_number)
            
            return fig, axs
        
@@ -837,7 +837,7 @@ class visualization:
     def description_branch_cut(self, title, scores, X_brut, y_brut,X_normal, X_abnormal, x_lim, y_lim, 
                               outlier_label, pathLength, model, threshold=ue._IFOREST_ANOMALY_THRESHOLD, 
                               dataset_name="Dataset", method_name="Method", 
-                              save_fig=False, show_legend=False):
+                              save_fig=False, show_legend=False, exec_number = 0):
         
             util = datat.utilitaries()
             
@@ -910,7 +910,7 @@ class visualization:
             
             if save_fig == True:
                 u_functions.save_image(dataset_name=dataset_name, method_name=method_name,
-                                type_result=ue._ANALYSIS_FIGURE_TYPE_SPLITTING_VIEW,  fig=fig)
+                                type_result=ue._ANALYSIS_FIGURE_TYPE_SPLITTING_VIEW,  fig=fig, exec_number = exec_number)
             
             return fig, axs
         
@@ -919,7 +919,7 @@ class visualization:
         Function to save image
     '''
     def save_image(self, dataset_name, method_name, type_result, fig, 
-                   folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH):
+                   folder_path=ue._ANALYSIS_RESULTS_FOLDER_PATH, exec_number = 0):
         
         #directory_path = dataset_name.split("+")[0]+folder_path+"/"+method_name+"/"+dataset_name.split("+")[1]
         
@@ -931,5 +931,5 @@ class visualization:
             os.makedirs(directory_path)
             
         #file_path = directory_path+"/"+dataset_name+"_"+method_name+"_"+type_result+"_"+str(datetime.now())+".png"
-        file_path = directory_path+"/"+dataset_name+"_"+method_name+"_"+type_result+".png"
+        file_path = directory_path+"/"+"Exec_"+str(exec_number)+"_"+dataset_name+"_"+method_name+"_"+type_result+".png"
         fig.savefig(file_path, bbox_inches='tight', pad_inches=0.05)

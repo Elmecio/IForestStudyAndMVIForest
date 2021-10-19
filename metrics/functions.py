@@ -27,7 +27,10 @@ class functions:
     def execute_IForest(self, X_brut:pd.DataFrame, X_train:pd.DataFrame = None, max_samples:int=256, 
                         n_trees:int=100, threshold:float=ue._IFOREST_AUTHORS_ANOMALY_THRESHOLD):
         
-        start_memory = perf.get_process_memory()
+        #start_memory = perf.get_process_memory()
+        import tracemalloc
+        tracemalloc.start()
+        
         start_time= time()
         
         # Instanciation, fit and predict
@@ -41,7 +44,11 @@ class functions:
             
         y_pred_IF, scores = func_IF.predict(X=X_brut, threshold=threshold)
         exec_time = time() - start_time
-        exec_memory = perf.get_process_memory() - start_memory
+        #exec_memory = perf.get_process_memory() - start_memory
+        current, peak = tracemalloc.get_traced_memory()
+        exec_memory = peak
+        #print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+        tracemalloc.stop()
         
         X_normal, X_abnormal, result_dataset = util.concat_columns_split(dataX=X_brut, 
                                                          dataScores=scores, dataY=y_pred_IF, 
@@ -60,7 +67,10 @@ class functions:
     def execute_IForest_GivenPathLength(self, X_brut:pd.DataFrame, X_train:pd.DataFrame = None, max_samples:int=256, 
                         n_trees:int=100, threshold = ue._IFOREST_AUTHORS_ANOMALY_THRESHOLD):
         
-        start_memory = perf.get_process_memory()
+        
+        #start_memory = perf.get_process_memory()
+        import tracemalloc
+        tracemalloc.start()
         start_time= time()
         
         func_IF = IFD.IsolationForest(sample_size = max_samples, n_trees=n_trees)
@@ -77,7 +87,11 @@ class functions:
                                                             threshold=threshold, 
                                                             pathLength=pathLength)
         exec_time = time() - start_time
-        exec_memory = perf.get_process_memory() - start_memory
+        #exec_memory = perf.get_process_memory() - start_memory
+        current, peak = tracemalloc.get_traced_memory()
+        exec_memory = peak
+        #print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+        tracemalloc.stop()
         
         X_normal, X_abnormal, result_dataset = util.concat_columns_split(dataX=X_brut, 
                                                          dataScores=scores, dataY=y_pred_IF, 
@@ -89,7 +103,10 @@ class functions:
     def execute_IForest_MajorityVoting(self, X_brut:pd.DataFrame, X_train:pd.DataFrame = None, max_samples:int=256, 
                         n_trees:int=100, threshold:float=ue._IFOREST_AUTHORS_ANOMALY_THRESHOLD):
         
-        start_memory = perf.get_process_memory()
+        
+        #start_memory = perf.get_process_memory()
+        import tracemalloc
+        tracemalloc.start()
         start_time= time()
         
         func_IF = IFD.IsolationForest(sample_size = max_samples, n_trees=n_trees)
@@ -104,7 +121,11 @@ class functions:
                                                             threshold=threshold,
                                                             return_pathLength=True)
         exec_time = time() - start_time
-        exec_memory = perf.get_process_memory() - start_memory
+        #exec_memory = perf.get_process_memory() - start_memory
+        current, peak = tracemalloc.get_traced_memory()
+        exec_memory = peak
+        #print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+        tracemalloc.stop()
         
         X_normal, X_abnormal, result_dataset = util.concat_columns_split(dataX=X_brut, 
                                                          dataScores=scores, dataY=y_pred_IF, 
@@ -128,7 +149,10 @@ class functions:
             
         X_brut_numpy = X_brut.to_numpy()
         
-        start_memory = perf.get_process_memory()
+        
+        #start_memory = perf.get_process_memory()
+        import tracemalloc
+        tracemalloc.start()
         start_time= time()
         
         if X_train is None:
@@ -143,7 +167,11 @@ class functions:
         prediction = np.where(scores>=threshold,-1,1)
         
         exec_time = time() - start_time
-        exec_memory = perf.get_process_memory() - start_memory
+        #exec_memory = perf.get_process_memory() - start_memory
+        current, peak = tracemalloc.get_traced_memory()
+        exec_memory = peak
+        #print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+        tracemalloc.stop()
         
         X_normal, X_abnormal, result_dataset = util.concat_columns_split(dataX=X_brut, 
                                                          dataScores=scores, dataY=prediction, 
@@ -169,7 +197,10 @@ class functions:
             
         X_brut_numpy = X_brut.to_numpy()
         
-        start_memory = perf.get_process_memory()
+        
+        #start_memory = perf.get_process_memory()
+        import tracemalloc
+        tracemalloc.start()
         start_time= time()
         
         if X_train is None:
@@ -184,7 +215,11 @@ class functions:
         prediction = np.where(scores>=threshold,-1,1)
         
         exec_time = time() - start_time
-        exec_memory = perf.get_process_memory() - start_memory
+        #exec_memory = perf.get_process_memory() - start_memory
+        current, peak = tracemalloc.get_traced_memory()
+        exec_memory = peak
+        #print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+        tracemalloc.stop()
         
         X_normal, X_abnormal, result_dataset = util.concat_columns_split(dataX=X_brut, 
                                                          dataScores=scores, dataY=prediction, 
@@ -211,7 +246,10 @@ class functions:
             
         X_brut_numpy = X_brut.to_numpy()
         
-        start_memory = perf.get_process_memory()
+        
+        #start_memory = perf.get_process_memory()
+        import tracemalloc
+        tracemalloc.start()
         start_time= time()
         
         if X_train is None:
@@ -229,7 +267,11 @@ class functions:
         pathsLength = self.EIF_pathLength_From_Scores(dataset_size=len(X_brut), scores=scores)
         
         exec_time = time() - start_time
-        exec_memory = perf.get_process_memory() - start_memory
+        #exec_memory = perf.get_process_memory() - start_memory
+        current, peak = tracemalloc.get_traced_memory()
+        exec_memory = peak
+        #print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+        tracemalloc.stop()
         
         X_normal, X_abnormal, result_dataset = util.concat_columns_split(dataX=X_brut, 
                                                          dataScores=scores, dataY=prediction, 
@@ -255,7 +297,10 @@ class functions:
             
         X_brut_numpy = X_brut.to_numpy()
         
-        start_memory = perf.get_process_memory()
+        
+        #start_memory = perf.get_process_memory()
+        import tracemalloc
+        tracemalloc.start()
         start_time= time()
         
         if X_train is None:
@@ -273,7 +318,11 @@ class functions:
         pathsLength = self.EIF_pathLength_From_Scores(dataset_size=len(X_brut), scores=scores)
         
         exec_time = time() - start_time
-        exec_memory = perf.get_process_memory() - start_memory
+        #exec_memory = perf.get_process_memory() - start_memory
+        current, peak = tracemalloc.get_traced_memory()
+        exec_memory = peak
+        #print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+        tracemalloc.stop()
         
         X_normal, X_abnormal, result_dataset = util.concat_columns_split(dataX=X_brut, 
                                                          dataScores=scores, dataY=prediction, 
