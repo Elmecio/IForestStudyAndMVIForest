@@ -46,7 +46,7 @@ http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/d
     - On 2D synthetics datasets : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Comparison_IForest_EIF_MVIForest_2D_SyntheticsData_V30102020_ToChangeNumberOfScores.ipynb
     - All the files (execution, result and images) : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020
     
-    - Regeneration of image with same axis scale : http://localhost:8888/notebooks/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-10-30_Copie_Important/images_generator.ipynb
+    - Regeneration of image with same axis scale : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2021-10-19/saved_images
 
 *******************************************************************************************************************************
 
