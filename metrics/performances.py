@@ -39,18 +39,19 @@ class performances:
 #   Parameters are : Y_predict =  prediction and Y_original = original classes 
 # =============================================================================
     def performance_summary(self, Y_predict, Y_original, scores, CPUTime = None,
-                            UseMemory=None, print_result=True, outputPRAUC = False):
+                            UseMemory=None, print_result=True, outputPRAUC = False,
+                            labels = None):
         #if len(scores) != len(Y_predict) or len(Y_predict) != len(Y_original) or len(scores) != len(Y_original):
         #    print("There is an error about datasets and scores length. They have to be the same.")
         #    return
         #else:
-        cm = confusion_matrix(Y_original, Y_predict)
+        cm = confusion_matrix(Y_original, Y_predict, labels=labels)
         #print("****************************************************************")
         '''Confusion matrice details
             tn fp
             fn  tp
         '''
-        ttn, tfp, tfn, ttp = confusion_matrix(Y_original, Y_predict).ravel()
+        ttn, tfp, tfn, ttp = confusion_matrix(Y_original, Y_predict, labels=labels).ravel()
         #print("****************************************************************")
         #print("ROC AUC")
         auc = roc_auc_score(Y_original, Y_predict)
