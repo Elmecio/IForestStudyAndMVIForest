@@ -1,6 +1,0 @@
-include Readme.md
-include eif.hxx
-include __eif.pxd
-include  _eif.pyx
-include eif.cxx
-include figures/*
