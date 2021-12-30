@@ -31,7 +31,7 @@ This project is to depth study IForest method and to proposed a new version name
     - 2D dataset data, old and new images, description : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_2D_data/Synthetics_2D
     - 3D dataset generation : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/datasets/synthetic_3D_data
     - Synthetics datasets used in the paper :
-    - 2.0.0 ==> Synthetic 5 (TwoD2_V2_0_0())
+        * 2.0.0 ==> Synthetic 5 (TwoD2_V2_0_0())
         * 3.3.0 ==> Synthetic 1 (TwoD2_V3_3_0())
         * 3.4.0 ==> Synthetic 2 (TwoD2_V3_4_0())
         * 4.3.0 ==> Synthetic 6 (TwoD2_V4_3_0())
@@ -47,62 +47,6 @@ http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/d
     - All the files (execution, result and images) : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020
     
     - Regeneration of image with same axis scale : http://localhost:8888/tree/Documents/DeveloppementGit/IForestStudyAndMVIForest/od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2021-10-19/saved_images
-
-*******************************************************************************************************************************
-
-# Old Contents (To delete)
-# Table of contents
-- [Pré-réquis](#Pré-réquis)
-- [Summary](#Summary)
-- [Motivation](#Motivation)
-- [This Git Organisation](#Organisation)
-    - [Datasets](#Datasets)
-        - [Synthetics Datasets](#Synthetics-Datasets)
-        - [Publics Datasets](#Publics-Datasets)
-- [Isolation Forest](#Isolation-Forest)
-- [Experiments](#Experiments)
-    - [Comparison between IForest and Extended IF](#Comparison-IForest-VS-Extended-IForest)
-    - [Differents experiments on IForest, EIF and MVIForest](#Others-differents-experiments)
-- [Comparative Study](#Motivation)
-    - [Local Outlier Factory (LOF)]
-    - [One Class SUpport Vector Machine (OC-SVM)]
-    - [Isolation Forest]
-    - [Datasets]
-    - [Results]
-    - [Publication]
-- [Implementation of IForestASD on Scikit-Multiflow](#Motivation)
-    - [Isolation Forest for Anomaly destection in Stream Data (IForest ASD)]
-    - [Scikit-Multiflow]
-    - [Half Space Trees (HS-Trees)]
-    - [Datasets]
-    - [Results]
-    - [Publication]
-- [Existings improvements of IForest](#Motivation)
-
-- [our Improvements](#Motivation)
-    - [MajorityVoting Isolation Forest](#Isolation-Forest)
-    - [The Code](#The-Code)
-- [Installation](#Installation)
-    - [Requirements](#Requirements)
-- [Use](#Use)
-- [Citation](#Citation)
-- [Releases](#Releases)
-
-
-# Pré-réquis
-## Outils
-    - Anaconda 1.9.7
-    - Jupiter Notebook
-    - Spyder
-    - Installer git (sudo pip install git)
-    - Installer numpy (sudo pip install numpy)
-    - Installer pandas (sudo pip install pandas)
-    - Installer sklearn (sudo pip install sklearn)
-    - Installer imblearn (sudo pip install imblearn) (pip install -U imbalanced-learn)
-    - Installer eif (sudo pip install eif)(pip install git+https://github.com/sahandha/eif.git)
-    - Installer scipy (sudo pip install scipy)
-    - Installer matplotlib (sudo pip install matplolib)
-    - Install pip install ipywidgets  jupyter nbextension enable --py widgetsnbextension
 
 # Summary
 # Motivation
@@ -176,50 +120,9 @@ The notebook is availlable on [Show results of IForest, MVIForest and EIF when t
 ### Methods comparison (IForest VS MVIForest VS EIF)
 This present a comparison between IForest, MVIForest and EIF on synthetics datasets.
 #### Synthetics 2D 
-The notebook is availlable on [Comparison between IForest, MVIForest and EIF on 2D synthetics datasets](od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Comparison_IForest_EIF_MVIForest_2D_SyntheticsData_V28082020.ipynb)
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-29/MVIForest/TwoD_V3.3.0_MVIForest_Metrics.png">**Figure**: MVIForest performances on one 2D synthetics dataset
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-29/MVIForest/TwoD_V3.3.0_MVIForest_Results.png">**Figure**: MVIForest results on one 2D synthetics dataset
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-29/MVIForest/TwoD_V3.3.0_MVIForest_Distribution.png">**Figure**: MVIForest results distribution on one 2D synthetics dataset
+The notebook is availlable on [Comparison between IForest, MVIForest and EIF on 2D synthetics datasets]
 #### Synthetics 3D 
 The notebook is availlable on [Comparison between IForest, MVIForest and EIF on 3D synthetics datasets](od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Comparison_IForest_EIF_MVIForest_3D_SyntheticsData_V28082020.ipynb)
 <img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-31/MVIForest/ThreeD_V3.3.0_MVIForest_Metrics.png">**Figure**: MVIForest performances on one 3D synthetics dataset
 <img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-31/MVIForest/ThreeD_V3.3.0_MVIForest_Results.png">**Figure**: MVIForest results on one 3D synthetics dataset
 <img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-31/MVIForest/ThreeD_V3.3.0_MVIForest_Distribution.png">**Figure**: MVIForest results distribution on one 3D synthetics dataset
-
-# Kmeans
-The outliers detection is possible with Kmeans but there are many ways to it with this method
-1. Kmeans + Distance
-    After applying Kmeans on the dataset, we can use the distance between the observations and the cluster center to detect the outliers.
-    To use Kmeans for outlier detection, we need to specify the threshood (distance beyond which all observations may be considered as outliers) or the top n (n top observations which have the higgest distance from the cluster center)
-    1.1 Case of one cluster (n_clusters = 1)
-        In this case, we consider all the dataset as one cluster and the utility of kmeans here is just to help use to find the best center of the dataset (KMeans(n_clusters).fit(X))
-        After this step, we calculate the distance between the center and all observations (transform)
-    1.2 Case of more dans one cluster (n_cluster >= 2)
-        1.2.1 The cluster which is the most far from the whole dataset center is the cluster of outliers (Global outlier)
-        1.2.2 The observations 
-2. Kmeans + center based
-    First : Use Kmeans with n_clusters = 1. and find the best observation which is the center of the dataset
-    Second : Use Kmeans with n_clusters = 2
-        The cluster wich content the center of all the dataset is the normal cluster. The other one is the ouliers cluster.
-3. Kmeans + Density based
-    The cluster which has the smallest number of observations is the cluster of outliers
-4. Kmeans + Z-score
-    Observations in Top n or Z-scorei greater dans threshood are outliers
-5. Kmeans + Grubb's test (or variante)
-    The cluster which content the outlier observation designed by Grubb's test (or variante) is the cluster of outliers
-6.
-
-# Mesures de performance
- ## Mesure de la précision avec la validation croisée
- ## Matrice de confusion
- ## Matrice de confusion de Scikit-learn et Détection d'anomalies
-     tn ==> tp
-     fn ==> fp
-     fp ==> fn
-     vp ==> vn
- ## Spécificité et rappel
- ## Spécificité/Rappel compromis
- ## La courbe ROC
- ## L'aire sous la courbe ROC
-
-
