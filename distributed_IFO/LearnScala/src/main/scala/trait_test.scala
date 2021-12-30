@@ -1,3 +1,0 @@
-trait trait_test {
-
-}

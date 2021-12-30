@@ -1,6 +1,6 @@
 This project is to depth study IForest method and to proposed a new version named MVIForest
 
-# New Contents
+# We will upload all the code after the acceptance of the paper.
 # Prerequisites
 ## Tools
     - Anaconda 1.9.7
@@ -113,9 +113,6 @@ The notebook and the results are availlable in [IForest VS MVIForest](https://gi
 ### IForest, EIF and MVIForest trainning only on normals data
 This show how the differents methods results when the trainning is only on the normals data. The goal of this experiment is to compare the performances of the differents methods when the samples used to build the itrees contains abnormals data or not.
 The notebook is availlable on [Show results of IForest, MVIForest and EIF when trained only on normals data](od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/Normal_Data_For_Train/New_Datasets/result_description_for_2D_NormalOnly.ipynb)
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/Normal_Data_For_Train/New_Datasets/Figures/2020-09-15/IForest/NormalOnly_TwoD_V4.3.0_IForest_Metrics.png">**Figure**: IForest performances on one 2D synthetics dataset
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/Normal_Data_For_Train/New_Datasets/Figures/2020-09-15/IForest/NormalOnly_TwoD_V4.3.0_IForest_Results.png">**Figure**: IForest results on one 2D synthetics dataset
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/Normal_Data_For_Train/New_Datasets/Figures/2020-09-15/IForest/NormalOnly_TwoD_V4.3.0_IForest_Distribution.png">**Figure**: IForest results distribution on one 2D synthetics dataset
 
 ### Methods comparison (IForest VS MVIForest VS EIF)
 This present a comparison between IForest, MVIForest and EIF on synthetics datasets.
@@ -123,6 +120,3 @@ This present a comparison between IForest, MVIForest and EIF on synthetics datas
 The notebook is availlable on [Comparison between IForest, MVIForest and EIF on 2D synthetics datasets]
 #### Synthetics 3D 
 The notebook is availlable on [Comparison between IForest, MVIForest and EIF on 3D synthetics datasets](od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Comparison_IForest_EIF_MVIForest_3D_SyntheticsData_V28082020.ipynb)
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-31/MVIForest/ThreeD_V3.3.0_MVIForest_Metrics.png">**Figure**: MVIForest performances on one 3D synthetics dataset
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-31/MVIForest/ThreeD_V3.3.0_MVIForest_Results.png">**Figure**: MVIForest results on one 3D synthetics dataset
-<img src="od_methods/IsoFo/IForest_Analysis/dimension_influence_IForestImplementation/execution_result_description/NewsDatasets_28082020/Figures/2020-08-31/MVIForest/ThreeD_V3.3.0_MVIForest_Distribution.png">**Figure**: MVIForest results distribution on one 3D synthetics dataset
