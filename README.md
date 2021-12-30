@@ -1,6 +1,6 @@
 This project is to depth study IForest method and to proposed a new version named MVIForest
 
-# New Contents
+# We will upload all the code after the acceptance of the paper.
 # Prerequisites
 ## Tools
     - Anaconda 1.9.7
